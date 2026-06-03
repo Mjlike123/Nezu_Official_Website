@@ -1,65 +1,66 @@
-import Image from "next/image";
+import { Header } from "@/components/sections/Header";
+import { Hero } from "@/components/sections/Hero";
+import { HowItWorks } from "@/components/sections/HowItWorks";
+import { Banner } from "@/components/sections/Banner";
+import { Stats } from "@/components/sections/Stats";
+import { Comparison } from "@/components/sections/Comparison";
+import { SeeIt } from "@/components/sections/SeeIt";
+import { FAQ } from "@/components/sections/FAQ";
+import { FinalCta } from "@/components/sections/FinalCta";
+import { About } from "@/components/sections/About";
+import { Footer } from "@/components/sections/Footer";
 
-export default function Home() {
+/**
+ * 首页入口文件
+ *
+ * 你可以把这个文件理解成「首页目录」：
+ * - Header：顶部导航栏
+ * - main：页面主体内容，里面按从上到下的顺序放各个区块
+ * - Footer：底部信息栏
+ *
+ * 专业词解释：
+ * - Component / 组件：一块可复用的页面积木，例如 <Hero /> 是首页第一屏。
+ * - JSX：这里这种像 HTML 的写法，React 会把它转换成真实网页。
+ * - Fragment / 空标签 <>...</>：只负责包住多个组件，不会在网页里多生成一层元素。
+ */
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      {/* Header = 页面顶部导航栏，通常包含 Logo、菜单、按钮。 */}
+      <Header />
+
+      {/* main = 网页主要内容区域；搜索引擎和读屏软件会把它当作页面核心内容。 */}
+      <main>
+        {/* Hero = 首屏主视觉，用户打开网站第一眼看到的标题、介绍和主按钮。 */}
+        <Hero />
+
+        {/* HowItWorks = “怎么使用”区块，用步骤解释产品流程。 */}
+        <HowItWorks />
+
+        {/* Banner = 横幅区块，用来承接上一段内容或强调一句核心卖点。 */}
+        <Banner />
+
+        {/* Stats = 数据和用户反馈区块，用数字增强可信度。 */}
+        <Stats />
+
+        {/* Comparison = 对比区块，说明 Nezu 和传统交友 App 的区别。 */}
+        <Comparison />
+
+        {/* SeeIt = 展示效果区块，用图片和说明让用户看到产品体验。 */}
+        <SeeIt />
+
+        {/* FAQ = 常见问题区块，回答用户可能担心的问题。 */}
+        <FAQ />
+
+        {/* FinalCta = 页面底部的最终行动号召，引导用户点击或联系。 */}
+        <FinalCta />
+
+        {/* About = 关于我们区块，解释 Nezu 的理念和联系信息。 */}
+        <About />
       </main>
-    </div>
+
+      {/* Footer = 页脚，通常放版权、隐私政策、联系方式等。 */}
+      <Footer />
+    </>
   );
 }

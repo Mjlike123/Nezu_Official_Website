@@ -1,26 +1,252 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =========================================================
+   Nezu Design System · Tailwind v4 theme
+   Source of truth: ../Nezu 项目/DESIGN.md + Figma 最新变量
+   - 颜色 token 与品牌一致：湖蓝、柠檬黄、文字、荧光蓝、浅色背景
+   - 显示字体使用本地 Playfair Display Bold
+   - UI 字体使用 Inter + SF Pro 系统优先 fallback
+   ========================================================= */
+
+@theme {
+  /* ----- Brand Core ----- */
+  --color-brand-blue: #0088ff;          /* 湖蓝 · 主 CTA / 行动锚点 */
+  --color-brand-blue-hover: #0073d9;    /* hover 加深 */
+  --color-brand-blue-soft: #d7eff6;     /* 浅色背景 */
+  --color-brand-yellow: #ffe600;        /* 柠檬黄 · 高亮强调 */
+  --color-brand-yellow-warm: #ffe66d;   /* 暖黄 · 贴纸 / sticker */
+  --color-brand-neon: #32fffa;          /* 荧光蓝 · 互动点缀 */
+  --color-brand-coral: #ff5a3d;         /* 珊瑚 · 社交点缀 */
+  --color-brand-ink: #111111;           /* 主要文字 */
+  --color-brand-room-ink: #061a40;      /* 深蓝 · 信任 / 隐私场景 */
+
+  /* ----- Surfaces ----- */
+  --color-surface-paper: #ffffff;
+  --color-surface-cream: #fbfbfa;       /* off-white hero / section bg */
+  --color-surface-mist: #f6f7fb;
+  --color-surface-pearl: #f5f5f7;
+  --color-surface-night: #111827;
+
+  /* ----- Apple Native Accents ----- */
+  --color-apple-blue: #007aff;
+  --color-apple-graphite: #1d1d1f;
+
+  /* ----- Neutrals (Apple-like) ----- */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #e5e5ea;
+  --color-neutral-200: #d1d1d6;
+  --color-neutral-300: #c7c7cc;
+  --color-neutral-400: #aeaeb2;
+  --color-neutral-500: #8e8e93;
+  --color-neutral-600: #636366;
+  --color-neutral-700: #48484a;
+  --color-neutral-800: #2c2c2e;
+  --color-neutral-900: #1d1d1f;
+
+  /* ----- Semantic ----- */
+  --color-success: #34c759;
+  --color-warning: #ff9500;
+  --color-danger: #ff3b30;
+
+  /* ----- Typography ----- */
+  --font-display: var(--font-playfair), "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", system-ui, sans-serif;
+
+  /* Type scale */
+  --text-display-1: 100px;
+  --text-display-1--line-height: 1.05;
+  --text-display-1--letter-spacing: -0.02em;
+  --text-display-2: 72px;
+  --text-display-2--line-height: 1.08;
+  --text-display-2--letter-spacing: -0.02em;
+  --text-display-3: 56px;
+  --text-display-3--line-height: 1.1;
+  --text-display-3--letter-spacing: -0.02em;
+  --text-h1: 48px;
+  --text-h1--line-height: 1.15;
+  --text-h1--letter-spacing: -0.015em;
+  --text-h2: 36px;
+  --text-h2--line-height: 1.18;
+  --text-h2--letter-spacing: -0.012em;
+  --text-h3: 24px;
+  --text-h3--line-height: 1.25;
+  --text-h3--letter-spacing: -0.005em;
+  --text-h4: 20px;
+  --text-h4--line-height: 1.3;
+  --text-body-lg: 18px;
+  --text-body-lg--line-height: 1.55;
+  --text-body: 16px;
+  --text-body--line-height: 1.55;
+  --text-body-sm: 14px;
+  --text-body-sm--line-height: 1.5;
+  --text-caption: 13px;
+  --text-caption--line-height: 1.4;
+  --text-overline: 11px;
+  --text-overline--line-height: 1.2;
+  --text-overline--letter-spacing: 0.08em;
+
+  /* ----- Radius ----- */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-bubble: 28px;
+  --radius-card: 32px;
+  --radius-pill: 50px;
+  --radius-full: 9999px;
+
+  /* ----- Shadow ----- */
+  --shadow-card-soft: 0 8px 24px rgba(6, 26, 64, 0.08);
+  --shadow-card-lift: 0 16px 48px rgba(6, 26, 64, 0.12);
+  --shadow-image-soft: 0 12px 40px rgba(6, 26, 64, 0.12);
+  --shadow-sticker: 0 4px 0 rgba(6, 26, 64, 0.18);
+  --shadow-glow-yellow: 0 0 32px rgba(255, 230, 0, 0.4);
+
+  /* ----- Section Spacing ----- */
+  --spacing-section-mobile: 56px;
+  --spacing-section-desktop: 96px;
+
+  /* ----- Animations ----- */
+  --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* =========================================================
+   Base layer
+   ========================================================= */
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-brand-ink);
+    background: var(--color-surface-cream);
+    font-size: var(--text-body);
+    line-height: 1.55;
+  }
+
+  /* 衬线显示字体专用 class */
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  /* 提升标题渲染质量 */
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* 选中样式 */
+  ::selection {
+    background-color: var(--color-brand-yellow);
+    color: var(--color-brand-ink);
+  }
+
+  /* 默认 focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* 尊重用户偏好 · 减少动画 */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =========================================================
+   工具 class
+   ========================================================= */
+@utility container-page {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 20px;
+
+  @media (min-width: 640px) {
+    padding-inline: 32px;
+  }
+  @media (min-width: 1024px) {
+    padding-inline: 48px;
+  }
+}
+
+@utility section-padding {
+  padding-block: var(--spacing-section-mobile);
+
+  @media (min-width: 768px) {
+    padding-block: var(--spacing-section-desktop);
+  }
+}
+
+/* hero 暗色遮罩 */
+@utility hero-overlay {
+  background: linear-gradient(180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0) 62%,
+    rgba(0, 0, 0, 0.18) 100%);
+}
+
+/* 滚动入场默认动画的初始态（被 framer-motion 接管，无需此 fallback 但保留兜底） */
+@utility reveal-init {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+@keyframes banner-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(-15deg);
+  }
+  50% {
+    transform: translate3d(4px, -8px, 0) rotate(-11deg);
+  }
+}
+
+@keyframes banner-float-delayed {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-6px, -10px, 0) rotate(3deg);
+  }
+}
+
+@keyframes how-it-works-float {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(6px, -10px, 0);
+  }
+}
+
+@keyframes how-it-works-float-delayed {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-6px, -12px, 0);
+  }
 }
