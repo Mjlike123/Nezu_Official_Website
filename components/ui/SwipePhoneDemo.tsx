@@ -74,6 +74,23 @@ export function SwipePhoneDemo() {
   return (
     <div className="relative mx-auto w-full max-w-[360px] sm:max-w-[400px]">
       <div className="relative mx-auto aspect-[462/1000] w-full">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute size-px overflow-hidden opacity-0"
+        >
+          {swipeCards.map((card) => (
+            <Image
+              key={`preload-${card.src}`}
+              src={card.src}
+              alt=""
+              width={230}
+              height={340}
+              sizes="230px"
+              loading="eager"
+            />
+          ))}
+        </div>
+
         <Image
           src="/images/swipe-demo/iphone-imessage.png"
           alt="A Nezu iMessage conversation mockup."
@@ -107,13 +124,14 @@ export function SwipePhoneDemo() {
                   damping: 26,
                   mass: 0.9,
                 }}
-                className="absolute inset-0 overflow-hidden rounded-[22px] shadow-[0_10px_28px_rgba(6,26,64,0.16)]"
+                className="absolute inset-0 overflow-hidden rounded-[22px] bg-brand-blue-soft shadow-[0_10px_28px_rgba(6,26,64,0.16)]"
               >
                 <Image
                   src={card.src}
                   alt=""
                   fill
                   sizes="230px"
+                  loading="eager"
                   className="object-cover"
                 />
               </motion.div>
@@ -135,13 +153,14 @@ export function SwipePhoneDemo() {
               mass: 0.9,
             }}
             style={{ x, rotate }}
-            className="absolute -left-[7px] -top-px bottom-0 right-0 cursor-grab overflow-hidden rounded-[22px] shadow-[0_16px_40px_rgba(6,26,64,0.22)] active:cursor-grabbing"
+            className="absolute -left-[7px] -top-px bottom-0 right-0 cursor-grab overflow-hidden rounded-[22px] bg-brand-blue-soft shadow-[0_16px_40px_rgba(6,26,64,0.22)] active:cursor-grabbing"
           >
             <Image
               src={topCard.src}
               alt={topCard.alt}
               fill
               sizes="230px"
+              loading="eager"
               className="object-cover"
               draggable={false}
             />
