@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { LogoMark, LogoLockup } from "@/components/brand/LogoMark";
@@ -43,7 +44,6 @@ const shadows = [
   { name: "card-soft", className: "shadow-card-soft" },
   { name: "card-lift", className: "shadow-card-lift" },
   { name: "image-soft", className: "shadow-image-soft" },
-  { name: "sticker", className: "shadow-sticker" },
 ];
 
 export default function Styleguide() {
@@ -53,12 +53,12 @@ export default function Styleguide() {
       <header className="border-b border-neutral-200 bg-white">
         <Container className="flex items-center justify-between py-6">
           <LogoLockup />
-          <a
+          <Link
             href="/"
             className="text-sm font-medium text-neutral-600 hover:text-brand-blue"
           >
             ← Back to Home
-          </a>
+          </Link>
         </Container>
       </header>
 
@@ -131,7 +131,7 @@ export default function Styleguide() {
             </Sample>
             <Sample label="H2 · 36/1.18 · Playfair">
               <p className="font-display text-[36px] leading-[1.18] tracking-tight">
-                It's already working.
+                It&apos;s already working.
               </p>
             </Sample>
             <Sample label="H3 · 24/1.25 · Inter Semibold">
@@ -141,7 +141,7 @@ export default function Styleguide() {
             </Sample>
             <Sample label="Body-LG · 18/1.55 · Inter Regular">
               <p className="text-lg leading-[1.55] text-neutral-700">
-                Tell Nezu what you're looking for. Nezu finds someone real and
+                Tell Nezu what you&apos;re looking for. Nezu finds someone real and
                 introduces you over iMessage.
               </p>
             </Sample>

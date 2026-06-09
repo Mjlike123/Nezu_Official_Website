@@ -27,7 +27,7 @@ export function Stats() {
             eyebrow={stats.eyebrow}
             title={
               <>
-                It's already <span className="text-brand-blue">working.</span>
+                It&apos;s already <span className="text-brand-blue">working.</span>
               </>
             }
             size="lg"

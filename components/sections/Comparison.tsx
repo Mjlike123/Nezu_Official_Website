@@ -26,7 +26,7 @@ export function Comparison() {
             eyebrow={comparison.eyebrow}
             title={
               <>
-                There's a <span className="text-brand-blue">better way.</span>
+                There&apos;s a <span className="text-brand-blue">better way.</span>
               </>
             }
             size="lg"

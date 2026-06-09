@@ -1,0 +1,19 @@
+---
+description: Follow the Nezu design system for UI and feature work
+alwaysApply: true
+---
+
+# Nezu Design System
+
+Before changing UI, layout, motion, images, or copy structure, read `design-system/DESIGN.md`.
+
+Use the existing visual language:
+- Warm iMessage-native social helper.
+- Brand blue for action, lemon yellow for emotional emphasis.
+- Playfair Display for major headlines, Inter for UI/body text.
+- Apple-like glass navigation, soft rounded cards, and slow floating doodles.
+- Mobile-first spacing and responsive adjustments.
+
+Prefer existing patterns in `components/ui/`, `components/sections/`, `lib/content.ts`, `public/images/`, and `public/scribbles/`.
+
+If a change intentionally expands the visual system, update `design-system/DESIGN.md` in the same work.
